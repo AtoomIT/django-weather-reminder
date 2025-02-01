@@ -1,0 +1,23 @@
+{% extends "home.html" %}
+
+{% block title %}
+    {% if subscription %}Редагування підписки{% else %}Додавання підписки{% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">{% if subscription %}Редагувати підписку{% else %}Додати підписку{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            {% if subscription %}Оновити підписку{% else %}Додати підписку{% endif %}
+        </button>
+    </form>
+
+    {% if subscription %}
+        <form method="post" action="{% url 'delete_subscription' subscription.id %}" class="mt-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Ви впевнені, що хочете видалити цю підписку?');">Видалити підписку</button>
+        </form>
+    {% endif %}
+{% endblock %}

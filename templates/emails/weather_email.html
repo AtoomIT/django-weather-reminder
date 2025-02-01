@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоди</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .content li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .content li:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            text-align: center;
+            background: #f9f9f9;
+            padding: 10px;
+            font-size: 14px;
+            color: #888;
+        }
+        @media (max-width: 600px) {
+            .header {
+                font-size: 20px;
+                padding: 15px;
+            }
+            .content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Прогноз погоди для {{ city }}
+        </div>
+        <div class="content">
+            <ul>
+                <li><strong>Температура:</strong> {{ temperature }} °C</li>
+                <li><strong>Відчувається як:</strong> {{ feels_like }} °C</li>
+                <li><strong>Мін. температура:</strong> {{ temp_min }} °C</li>
+                <li><strong>Макс. температура:</strong> {{ temp_max }} °C</li>
+                <li><strong>Швидкість вітру:</strong> {{ wind_speed }} м/с</li>
+                <li><strong>Хмарність:</strong> {{ cloudiness }} %</li>
+            </ul>
+        </div>
+        <div class="footer">
+            &copy;Прогноз погоди. Усі права захищені.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+
+{% block title %}Профіль користувача{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Профіль користувача: {{ user.username }}</h1>
+        <p class="mb-4">Електронна пошта: <strong>{{ user.email }}</strong></p>
+
+        <div class="d-flex flex-column gap-3">
+            <!-- Кнопка для переходу до сторінки погоди -->
+            <a href="{% url 'weather_list' %}" class="btn btn-primary">Переглянути погоду</a>
+
+            <!-- Кнопка для переходу до списку підписок -->
+            <a href="{% url 'subscriptions_list' %}" class="btn btn-secondary">Список підписок</a>
+
+            <!-- Кнопка для виходу -->
+            <a href="{% url 'logout' %}" class="btn btn-danger">Вийти</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block title %}Список підписок{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Ваші підписки на погоду</h2>
+    <a href="{% url 'add_subscription' %}" class="btn btn-success mb-3">Додати підписку</a>
+
+    {% if subscriptions %}
+        <ul class="list-unstyled">
+            {% for subscription in subscriptions %}
+                <li class="mb-2">
+                    <strong>{{ subscription.city }}, {{ subscription.country }}</strong>
+                    <small class="text-muted">(Період сповіщень: 8:00)</small>
+                    <a href="{% url 'edit_subscription' subscription.id %}" class="btn btn-primary btn-sm ms-2">Редагувати</a>
+                    <form method="post" action="{% url 'delete_subscription' subscription.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Ви впевнені, що хочете видалити цю підписку?');">Видалити</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">У вас немає активних підписок.</p>
+    {% endif %}
+
+    <a href="{% url 'profile' user.username %}" class="btn btn-secondary mt-4">Назад до профілю</a>
+{% endblock %}

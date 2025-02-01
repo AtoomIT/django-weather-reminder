@@ -1,0 +1,35 @@
+# Ігноруємо середовища розробки
+.env
+env/
+venv/
+
+# Ігноруємо базу даних SQLite
+db.sqlite3
+my_database.db
+
+# Ігноруємо файли Celery Beat
+celerybeat-schedule.*
+
+# Ігноруємо завантажені файли користувачів (якщо не хочеш зберігати їх у репозиторії)
+media/
+
+# Ігноруємо статичні файли (їх можна згенерувати)
+static/
+
+# Ігноруємо кешовані файли та тимчасові файли
+*.pyc
+*.pyo
+__pycache__/
+*.swp
+
+# Ігноруємо файли IDE (PyCharm, VSCode тощо)
+.idea/
+.vscode/
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Ігноруємо тимчасові тестові файли
+1.py
+2.py

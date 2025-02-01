@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SECRET_KEY: your-secret-key  # Заміни на свій секретний ключ
+      DJANGO_DEBUG: 'True'  # Встановити True для розробки, False для продакшн
+      EMAIL_HOST_USER: kosarykeugene@gmail.com  # Твоя електронна адреса
+      EMAIL_HOST_PASSWORD: ivyfwtdxrftovpqv  # Пароль додатка
+      DEFAULT_FROM_EMAIL: kosarykeugene@gmail.com  # Встановити знову твою електронну адресу
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

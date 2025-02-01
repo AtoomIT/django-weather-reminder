@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block title %}Увійти{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Увійти</h2>
+        <form method="POST" class="border p-4 shadow-sm rounded">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Увійти</button>
+        </form>
+        <p class="text-muted mt-3">
+            Немає акаунту? <a href="{% url 'register' %}" class="text-decoration-none">Зареєструватися</a>
+        </p>
+    </div>
+{% endblock %}
