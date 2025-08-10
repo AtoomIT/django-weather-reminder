@@ -1,8 +1,8 @@
 from celery import shared_task
-from django.utils.timezone import now
 from .models import Subscription
 from .utils import send_weather_email
 from .views import get_weather
+
 
 @shared_task
 def send_weather_updates():

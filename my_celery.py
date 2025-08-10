@@ -7,7 +7,6 @@ app = Celery('django_weather_reminder')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# Додайте наступний рядок
 app.conf.worker_pool = 'solo'
 
 app.autodiscover_tasks()

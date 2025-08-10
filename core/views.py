@@ -10,7 +10,6 @@ from .forms import CustomUserCreationForm
 from django.http import Http404
 
 
-# Логгер
 logger = logging.getLogger(__name__)
 
 
@@ -124,7 +123,6 @@ def get_weather_forecast(city, country):
         return None
 
 
-# Управління підписками
 # Управління підписками
 def manage_subscription_view(request, subscription_id=None):
     if not request.user.is_authenticated:

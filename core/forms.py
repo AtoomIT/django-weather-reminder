@@ -6,7 +6,7 @@ from .models import User, Subscription
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'username', 'password1', 'password2')  # Оновлено на username
+        fields = ('email', 'username', 'password1', 'password2')
 
 
 class CustomAuthenticationForm(AuthenticationForm):

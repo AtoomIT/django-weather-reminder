@@ -15,18 +15,19 @@ class CustomUserManager(BaseUserManager):
 
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)  # Додаємо is_superuser
+        extra_fields.setdefault("is_superuser", True)
         return self.create_user(email, password, **extra_fields)
 
-class User(AbstractBaseUser, PermissionsMixin):  # Наслідуємо PermissionsMixin
+
+class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(null=True, blank=True)
 
-    is_staff = models.BooleanField(default=False)  # Необхідне поле
-    is_active = models.BooleanField(default=True)  # Необхідне поле
-    is_superuser = models.BooleanField(default=False)  # Додаємо is_superuser
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 

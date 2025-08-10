@@ -1,6 +1,13 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -9,11 +16,40 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DJANGO_SECRET_KEY: your-secret-key  # Заміни на свій секретний ключ
-      DJANGO_DEBUG: 'True'  # Встановити True для розробки, False для продакшн
-      EMAIL_HOST_USER: kosarykeugene@gmail.com  # Твоя електронна адреса
-      EMAIL_HOST_PASSWORD: ivyfwtdxrftovpqv  # Пароль додатка
-      DEFAULT_FROM_EMAIL: kosarykeugene@gmail.com  # Встановити знову твою електронну адресу
+      DJANGO_SECRET_KEY: your-secret-key  # Замінити на свій секретний ключ
+      DJANGO_DEBUG: 'True'  # True для розробки, False для продакшену
+      EMAIL_HOST_USER: kosarykeugene@gmail.com
+      EMAIL_HOST_PASSWORD: ivyfwtdxrftovpqv
+      DEFAULT_FROM_EMAIL: kosarykeugene@gmail.com
+      CELERY_BROKER_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  celery_worker:
+    build: .
+    command: celery -A django_weather_reminder.my_celery worker --loglevel=info --pool=solo
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - web
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
+    networks:
+      - app-network
+
+  celery_beat:
+    build: .
+    command: celery -A django_weather_reminder.my_celery beat --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - web
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
     networks:
       - app-network
 

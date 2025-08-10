@@ -32,4 +32,4 @@ docker-compose.override.yml
 
 # Ігноруємо тимчасові тестові файли
 1.py
-2.py
+
