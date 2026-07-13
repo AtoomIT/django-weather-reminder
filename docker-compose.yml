@@ -16,11 +16,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DJANGO_SECRET_KEY: your-secret-key  # Замінити на свій секретний ключ
+      DJANGO_SECRET_KEY: 
       DJANGO_DEBUG: 'True'  # True для розробки, False для продакшену
-      EMAIL_HOST_USER: kosarykeugene@gmail.com
-      EMAIL_HOST_PASSWORD: ivyfwtdxrftovpqv
-      DEFAULT_FROM_EMAIL: kosarykeugene@gmail.com
+      EMAIL_HOST_USER: 
+      EMAIL_HOST_PASSWORD: 
+      DEFAULT_FROM_EMAIL: 
       CELERY_BROKER_URL: redis://redis:6379/0
     depends_on:
       - redis
